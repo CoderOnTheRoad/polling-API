@@ -41,6 +41,8 @@ module.exports.deleteOption=async(req,res)=>{
        
         if(option){
             //if the option exists
+            if(option.votes>0){
+            //if there is no vote in the option you can delete the option
             //find the question with which option is attached to
                 let questionId = option.question;
                 let question = await Question.findById(questionId);
@@ -55,6 +57,9 @@ module.exports.deleteOption=async(req,res)=>{
                 await Option.findByIdAndDelete(optionId);
                 console.log("option deleted, text:"+option.text);
                 return res.status(201).json({message:"Option deleted successfuly"});
+            }else{
+                return res.status(400).json({ message: "Option Found but can't be deleted as it has votes"});
+            }
         }
         return res.status(400).json({ message: "No option found with the id"});
 
