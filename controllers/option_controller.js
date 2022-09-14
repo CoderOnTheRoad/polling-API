@@ -41,7 +41,7 @@ module.exports.deleteOption=async(req,res)=>{
        
         if(option){
             //if the option exists
-            if(option.votes>0){
+            if(option.votes==0){
             //if there is no vote in the option you can delete the option
             //find the question with which option is attached to
                 let questionId = option.question;
