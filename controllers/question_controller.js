@@ -39,6 +39,12 @@ module.exports.deleteQuestion=async (req,res)=>{
 
         //delete options 
         for(let option of question.options){
+            let foundOption=await Option.findById(option);
+            if(foundOption.votes>0){
+                return res.status(400).json({message:"Question cant be deleted as it's option Contains Votes"}); 
+            }
+        }
+        for(let option of question.options){
             await Option.findByIdAndDelete(option);
         }
         await Question.findByIdAndDelete(id);
