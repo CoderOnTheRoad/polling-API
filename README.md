@@ -19,10 +19,10 @@
 ## Routes
 - GET  -  / (To get all the questions and options)
 - POST -  /questions/create  (To create a question)
-- POST -  /questions/:id/options/create  (To add options to a question (the id of the question is provided in params))
+- POST -  /options/:id/create  (To add options to a question (the id of the question is provided in params))
 - GET -  /questions/:id/delete (To delete a question)
 - GET -  /options/:id/delete (To delete an option. An option can't be deleted if it has votes)
-- POST -  /options/:id/add_vote (To increment the count of votes to an option)
+- GET -  /options/:id/add_vote (To increment the count of votes to an option)
 - GET  -  /questions/:id (To view a question and it’s options)
 
 ## How to add questions / options
